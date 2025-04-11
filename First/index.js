@@ -39,7 +39,14 @@ const Children = () => {
 const Header = () => {
    return (
       <div className="Container">
+
+         
+         {Children()}
+         {<Children/>}
+         {<Children></Children>}
          <Children />
+         <Children></Children>
+         
          <h1>Iam a Function based Component</h1>
       </div>
    )
