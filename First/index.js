@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import ReactDOM from "react-dom/client";
 
 // const Parent = React.createElement('h1', { id: "header", className: "header" },
@@ -18,15 +18,34 @@ import ReactDOM from "react-dom/client";
 //                              "hello world with React Js!")])
 //             ],)
 
-const JsxParent = (<>
-   <h1>Hi iam from jsx code</h1>
-   <h1>Hi iam from jsx code</h1>
-   <h1>Hi iam from jsx code</h1>
-   <h1>Hi iam from jsx code</h1>
-</>
-)
-console.log(JsxParent);
+// const JsxParent = (<>
+//    <h1>Hi iam from jsx code</h1>
+//    <h1>Hi iam from jsx code</h1>
+//    <h1>Hi iam from jsx code</h1>
+//    <h1>Hi iam from jsx code</h1>
+// </>
+// )
+// console.log(JsxParent);
+
+
+// react Component
+
+const Children = () => {
+   return (
+      <h1>Iam a Title</h1>
+   )
+}
+// to insert the 1 component in 2 component that is *Component Composition*
+const Header = () => {
+   return (
+      <div className="Container">
+         <Children />
+         <h1>Iam a Function based Component</h1>
+      </div>
+   )
+}
+
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(JsxParent)
+root.render(<Header />)
