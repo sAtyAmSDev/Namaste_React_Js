@@ -32,7 +32,7 @@ import ReactDOM from "react-dom/client";
 
 const Children = () => {
    return (
-      <h1>Iam a Title</h1>
+      <h1>Iam a Title to insert by other component</h1>
    )
 }
 // to insert the 1 component in 2 component that is *Component Composition*
