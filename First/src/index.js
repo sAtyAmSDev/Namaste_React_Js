@@ -1,5 +1,6 @@
-import React, { Component } from "react";
+import React,{useState} from "react";
 import ReactDOM from "react-dom/client";
+import Children from "./Components/Children";
 
 // const Parent = React.createElement('h1', { id: "header", className: "header" },
 //      [React.createElement('div', 
@@ -30,24 +31,17 @@ import ReactDOM from "react-dom/client";
 
 // react Component
 
-const Children = () => {
-   return (
-      <h1>Iam a Title to insert by other component</h1>
-   )
-}
+
 // to insert the 1 component in 2 component that is *Component Composition*
 const Header = () => {
+   const [first, setfirst] = useState(second)
    return (
       <div className="Container">
 
+<Children />
          
-         {Children()}
-         {<Children/>}
-         {<Children></Children>}
          <Children />
-         <Children></Children>
-         
-         <h1>Iam a Function based Component</h1>
+
       </div>
    )
 }
