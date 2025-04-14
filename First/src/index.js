@@ -36,26 +36,9 @@ import Children from "./Components/Children";
 const Header = () => {
 const [FetchData, setFetchData] = useState([])
 useEffect(() => {
-   fetchData()
-})
-const fetchData = async () => {
-   const url = 'https://www.themealdb.com/api/json/v1/1/search.php?f=b';
-   const options = {
-      method: 'GET',
-      // headers: {
-      //    'x-rapidapi-key': 'd06ebdb468mshef47bbba86ace9bp1ed8d5jsn574356246200',
-      //    'x-rapidapi-host': 'wine-pair.p.rapidapi.com'
-      // }
-   };
    
-   try {
-      const response = await fetch(url, options);
-      const result = await response.json();
-      console.log(result);
-   } catch (error) {
-      console.error(error);
-   }
-}
+})
+
 
    return (
       <div className="Container">
