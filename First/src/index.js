@@ -1,6 +1,11 @@
 import React,{useEffect, useState} from "react";
 import ReactDOM from "react-dom/client";
 import Children from "./Components/Children";
+import {  createBrowserRouter, RouterProvider } from "react-router";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import ErrorPage from "./pages/ErrorPage";
+
 
 // const Parent = React.createElement('h1', { id: "header", className: "header" },
 //      [React.createElement('div', 
@@ -39,19 +44,31 @@ useEffect(() => {
    
 })
 
-
    return (
       <div className="Container">
-
-<Children />
-         
+             <Children />
          <Children />
-
       </div>
    )
 }
 
+const appRouter = createBrowserRouter(
+   [
+      {
+         path:"/",
+         element:<Header />,
+         errorElement:<ErrorPage/>
+      },
+      {
+         path:"/about",
+         element:<About />,
+      } , {
+         path:"/contact",
+         element:<Contact />,
+      }
+   ]
+)
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<Header />)
+root.render(<RouterProvider router={appRouter} />)
