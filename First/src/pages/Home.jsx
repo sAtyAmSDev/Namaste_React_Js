@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Card } from "../Components/Card";
 import Shimmer from "../layout/shimmer";
+import {API_URL} from "../Components/Utils/constants"
 const Home = () => {
   const [GitaData, setGitaData] = useState([]);
   const [GitaDataCopy, setGitaDataCopy] = useState([]);
@@ -10,8 +11,9 @@ const Home = () => {
     getGitaData();
   }, []);
 
+
   const getGitaData = async () => {
-    const res = await fetch("https://vedicscriptures.github.io/chapters");
+    const res = await fetch(API_URL);
     const response = await res.json();
     console.log(response);
     setGitaData(response);
