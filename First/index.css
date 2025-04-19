@@ -1,4 +1,79 @@
-#header{
-    color: red;
-    font-size: 3rem;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Tiro+Devanagari+Marathi:ital@0;1&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+.header .logo h1 {
+  font-size: 2rem;
+  color: #ff6600;
+  font-weight: bold;
+}
+.header ul {
+  display: flex;
+  gap: 15px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.header ul li {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+}
+
+.Home .input {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.Home .input input {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+.Home .input button {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ff6600;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.CardContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+.card {
+  font-family: "Tiro Devanagari Marathi", serif;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  margin: 20px auto;
+  width: 50%;
+  gap: 10px;
+}
+.card h2 {
+  font-size: 1.5rem;
+  color: #333;
+}
+.card p {
+  font-size: 1rem;
+  color: #666;
 }

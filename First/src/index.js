@@ -1,10 +1,11 @@
-import React,{useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
-import Children from "./Components/Children";
-import {  createBrowserRouter, RouterProvider } from "react-router";
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import ErrorPage from "./pages/ErrorPage";
+import Home from "./pages/Home";
+import Header from "./layout/Header.jsx";
 
 
 // const Parent = React.createElement('h1', { id: "header", className: "header" },
@@ -38,34 +39,41 @@ import ErrorPage from "./pages/ErrorPage";
 
 
 // to insert the 1 component in 2 component that is *Component Composition*
-const Header = () => {
-const [FetchData, setFetchData] = useState([])
-useEffect(() => {
-   
-})
+const AppLayout = () => {
+   const [FetchData, setFetchData] = useState([])
+   useEffect(() => {
+
+   })
 
    return (
-      <div className="Container">
-             <Children />
-         <Children />
-      </div>
+      <>
+         <Header />
+         <Outlet />
+      </>
    )
 }
 
 const appRouter = createBrowserRouter(
    [
       {
-         path:"/",
-         element:<Header />,
-         errorElement:<ErrorPage/>
-      },
-      {
-         path:"/about",
-         element:<About />,
-      } , {
-         path:"/contact",
-         element:<Contact />,
+         path: "/",
+         element: <AppLayout />,
+         children: [
+            {
+               path: "/",
+               element: <Home />,
+
+            },
+            {
+               path: "/about",
+               element: <About />,
+            }, {
+               path: "/contact",
+               element: <Contact />,
+            }
+         ], errorElement: <ErrorPage />
       }
+
    ]
 )
 
