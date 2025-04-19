@@ -1,3 +1,5 @@
+import { Link } from "react-router"
+
  const Header = () => {
     return (
       
@@ -6,9 +8,10 @@
         <h1>Gita</h1>
       </div>
 <ul>
-   <li>Home</li>
-   <li>About</li>
-   <li>Contact</li>
+  
+   <li><Link>Home</Link></li>
+   <li><Link to="/about">About</Link></li>
+   <li><Link to="/contact">Contact</Link></li>
 </ul>
       </div>
     )
