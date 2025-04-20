@@ -3,14 +3,17 @@ class UserClassComp extends React.Component {
 
     constructor(props) {
         super(props);
-        console.log(props);
+        console.log("Child Constructor");
         this.state = {
             count: 0,
             count2: 1,
         }
     }
-
+    componentDidMount() {
+        console.log("Child ComponentDidMount");
+    }
     render() {
+        console.log("Child Render");
         const { name, age, location } = this.props;
         const { count, count2 } = this.state;
         return (
