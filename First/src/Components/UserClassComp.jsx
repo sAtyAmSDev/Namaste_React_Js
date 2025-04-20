@@ -5,31 +5,43 @@ class UserClassComp extends React.Component {
         super(props);
         this.state = {
             count: 0,
-            count2: 1,
+            name: "Satyam",
+            location: "Pune"
         }
         console.log(this.props.name + "Child Constructor");
     }
-    componentDidMount() {
+    async componentDidMount() {
+        // const Data = await fetch("https://api.github.com/users/sAtyAmSDev")
+        // const json = await Data.json()
+        // console.log(json)
+        // this.setState({
+        //     ...json
+        // })
+
+       this.TimeInterval= setInterval(() => {
+            console.log("Interval");
+            
+        }, 1000);
         console.log(this.props.name + "Child ComponentDidMount");
+    }
+
+
+    componentDidUpdate() {
+        console.log(this.props.name + "Child componentDidUpdate")
+    }
+    componentWillUnmount(){
+        clearInterval(this.TimeInterval)
+        console.log(this.props.name + "Child componentWillUnmount")
     }
     render() {
         console.log(this.props.name + "Child Render");
-        const { name, age, location } = this.props;
-        const { count, count2 } = this.state;
+        const { count, location, name, avatar_url } = this.state;
         return (
             <div>
-                <h1>Make Count Variable in Class Comp Count: {count} </h1>
-                <h1>Count2 : {count2}</h1>
-                <button onClick={() => {
-                    this.setState({
-                        count: count + 1,
-                        count2: count2 + 1
-                    })
-                }}>Count +</button>
                 <h1>UserClassComp</h1>
                 <p>Name : {name} </p>
-                <p>Age : {age}</p>
                 <p >Location : {location}</p>
+                <img src={avatar_url} alt="" />
                 <p></p>
             </div>
         )
