@@ -8,7 +8,7 @@ const About = () => {
             <p>This is the about page of our application.</p>
    
             <div>
-<UserFnComp name={"Satyam"} age={"19"} location={"pune"} />
+{/* <UserFnComp name={"Satyam"} age={"19"} location={"pune"} /> */}
 <UserClassComp name={"Satyam"} age={"19"} location={"pune"} />
             </div>
         </div>
