@@ -111,7 +111,7 @@ body {
   height: 60vh;
   gap: 10px;
 }
-
+.Chapter{}
 .ChapterMainContainer {
   width: 100%;
   display: flex;
@@ -165,4 +165,43 @@ body {
 .ChapterVerseContainer .VerseCard button:hover {
   background-color: #ff6600;
   color: white;
+}
+.VerseInfoContainer{
+display: flex;
+/* justify-self: start; */
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding: 20px;
+  border-radius: 10px;
+  /* margin: 20px auto; */
+  /* width: 40vw; */
+  gap: 10px;
+  /* background-color: #f0f0f0; */
+}
+.VerseInfoContainer h1{
+
+  font-size: 2rem;
+  color: #ff6600;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.VerseInfoContainer h1 span{
+  font-size: 1.5rem;
+  color: #333;
+  font-weight: bold;
+  margin-left: 10px;
+}
+.VerseInfoContainer p{
+  font-size: 1rem;
+  color: #333;
+  font-weight: bold;
+  margin-left: 10px;
+}
+.VerseInfoContainer p span{
+  font-size: 1.2rem;
+  color: #333;
+  font-weight: bold;
+  margin-left: 10px;
 }
