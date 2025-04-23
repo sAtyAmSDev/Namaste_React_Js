@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router";
 import About from "./pages/About.jsx";
@@ -7,8 +7,11 @@ import ErrorPage from "./pages/ErrorPage.jsx";
 import Home from "./pages/Home.jsx";
 import Header from "./layout/Header.jsx";
 import Chapter from "./Components/Chapter.jsx";
+// import Books from "./pages/Books.jsx";
+const Books = lazy(() => import("./pages/Books.jsx"));
 
 const AppLayout = () => {
+
 
    return (
       <>
@@ -35,6 +38,12 @@ const appRouter = createBrowserRouter(
                path: "/contact",
                element: <Contact />,
             },{
+               path:"/books",
+               element:<Suspense fallback="Loading.....">
+                  <Books/>
+               </Suspense>
+            }
+            ,{
                path:"/chapter/:id",
                element:<Chapter/>
             }
