@@ -3,11 +3,13 @@ import { Card } from "../Components/Card";
 import Shimmer from "../layout/shimmer";
 import { API_URL } from "../Components/Utils/constants";
 import useFetch from "../hooks/useFetch";
+import useOnlineStatus from "../hooks/useOnlineStatus";
+import Offline from "../Components/Offline";
 const Home = () => {
   const { data, loading, error } = useFetch("chapters");
   const [GitaDataCopy, setGitaDataCopy] = useState([]);
   const [SearchText, setSearchText] = useState("");
-
+const onlineStatus =useOnlineStatus()
   useEffect(() => {
     if (data.length > 0) {
       setGitaDataCopy(data);
@@ -24,6 +26,8 @@ const Home = () => {
     setGitaDataCopy(FilterData);
     setSearchText("");
   };
+
+if (onlineStatus === false) return <Offline />;
 
   return loading ? (
     <Shimmer />

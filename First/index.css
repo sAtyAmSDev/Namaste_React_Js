@@ -111,7 +111,8 @@ body {
   height: 60vh;
   gap: 10px;
 }
-.Chapter{}
+.Chapter {
+}
 .ChapterMainContainer {
   width: 100%;
   display: flex;
@@ -126,12 +127,16 @@ body {
   flex-wrap: wrap;
   gap: 15px;
 }
-.Title{}
-.ChapterName{}
-.ChapterNameTranslation{}
-.ChapterMeaning{}
-.ChapterSummary{}
-
+.Title {
+}
+.ChapterName {
+}
+.ChapterNameTranslation {
+}
+.ChapterMeaning {
+}
+.ChapterSummary {
+}
 
 .ChapterVerseContainer {
   display: flex;
@@ -166,9 +171,9 @@ body {
   background-color: #ff6600;
   color: white;
 }
-.VerseInfoContainer{
-display: flex;
-/* justify-self: start; */
+.VerseInfoContainer {
+  display: flex;
+  /* justify-self: start; */
   flex-direction: column;
   flex-wrap: wrap;
   padding: 20px;
@@ -178,8 +183,7 @@ display: flex;
   gap: 10px;
   /* background-color: #f0f0f0; */
 }
-.VerseInfoContainer h1{
-
+.VerseInfoContainer h1 {
   font-size: 2rem;
   color: #ff6600;
   font-weight: bold;
@@ -187,20 +191,47 @@ display: flex;
   align-items: center;
   gap: 10px;
 }
-.VerseInfoContainer h1 span{
+.VerseInfoContainer h1 span {
   font-size: 1.5rem;
   color: #333;
   font-weight: bold;
   margin-left: 10px;
 }
-.VerseInfoContainer p{
+.VerseInfoContainer p {
   font-size: 1rem;
   color: #333;
   font-weight: bold;
   margin-left: 10px;
 }
-.VerseInfoContainer p span{
+.VerseInfoContainer p span {
   font-size: 1.2rem;
+  color: #333;
+  font-weight: bold;
+
+  margin-left: 10px;
+}
+
+.Offline {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ff6600;
+  font-family: "Poppins", sans-serif;
+}
+.Offline h1 {
+  font-size: 2rem;
+  color: #ff6600;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.Offline p {
+  font-size: 1rem;
   color: #333;
   font-weight: bold;
   margin-left: 10px;

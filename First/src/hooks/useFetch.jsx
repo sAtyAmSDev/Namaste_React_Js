@@ -25,7 +25,6 @@ function useFetch(endpoint) {
         })
     }, [endpoint])
 
-    custom
     
     return { data, loading, error }
 }
