@@ -1,34 +1,31 @@
 import React, { useEffect, useState } from "react";
 import { Card } from "../Components/Card";
 import Shimmer from "../layout/shimmer";
-import {API_URL} from "../Components/Utils/constants"
+import { API_URL } from "../Components/Utils/constants";
+import useFetch from "../hooks/useFetch";
 const Home = () => {
-  const [GitaData, setGitaData] = useState([]);
+  const { data, loading, error } = useFetch("chapters");
   const [GitaDataCopy, setGitaDataCopy] = useState([]);
   const [SearchText, setSearchText] = useState("");
+
   useEffect(() => {
-    console.log("hello world useEffect");
-    getGitaData();
-  }, []);
+    if (data.length > 0) {
+      setGitaDataCopy(data);
+    }
+  }, [data]);
 
-
-  const getGitaData = async () => {
-    const res = await fetch(API_URL);
-    const response = await res.json();
-    console.log(response);
-    setGitaData(response);
-    setGitaDataCopy(response);
-  };
-
-  const FilterChapter = (e) => {
-    const FilterData = GitaData.filter((item) => {
-      return item.chapter_number.toString().includes(SearchText);
+  const filterChapter = (e) => {
+    const FilterData = data.filter((item) => {
+      return (
+        item.chapter_name?.toLowerCase().includes(SearchText.toLowerCase()) ||
+        item?.translation.toLowerCase().includes(SearchText.toLowerCase())
+      );
     });
     setGitaDataCopy(FilterData);
     setSearchText("");
-    console.log(FilterData);
   };
-  return ((GitaData.length === 0) ? (
+
+  return loading ? (
     <Shimmer />
   ) : (
     <div className="Home">
@@ -42,7 +39,7 @@ const Home = () => {
           }}
           id=""
         />
-        <button onClick={() => FilterChapter()}>SearchText</button>
+        <button onClick={() => filterChapter()}>Search</button>
       </div>
       <div className="CardContainer">
         {GitaDataCopy.map((item, index) => {
@@ -50,7 +47,7 @@ const Home = () => {
         })}
       </div>
     </div>
-  ));
+  );
 };
 
 export default Home;
