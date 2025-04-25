@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Card, CardVerseShowOnCard } from "../Components/Card";
-import { API_URL } from "../Components/Utils/constants";
-import useFetch from "../hooks/useFetch";
-import useOnlineStatus from "../hooks/useOnlineStatus";
-import Offline from "../Components/Offline";
-import Shimmer from "../layout/shimmer";
+import useFetch from "../hooks/useFetch.jsx";
+import useOnlineStatus from "../hooks/useOnlineStatus.jsx";
+import Offline from "../Components/Offline.jsx";
+import Shimmer from "../layout/Shimmer.jsx";
 const Home = () => {
   const { data, loading, error } = useFetch("chapters");
   const [GitaDataCopy, setGitaDataCopy] = useState([]);
@@ -48,7 +47,7 @@ const Home = () => {
           id=""
         />
         <button
-          className="cursor-pointer p-2 rounded-md  border border-orange-600/30 text-white   bg-orange-500/80 hover:bg-orange-500/90 item-center justify-center flex "
+          className="cursor-pointer p-2 rounded-md   border border-orange-600/30 text-white   bg-orange-500/80 hover:bg-orange-500/90 item-center justify-center flex "
           onClick={() => filterChapter()}
         >
           Search
