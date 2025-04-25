@@ -7,6 +7,7 @@ import ErrorPage from "./pages/ErrorPage.jsx";
 import Home from "./pages/Home.jsx";
 import Header from "./layout/Header.jsx";
 import Chapter from "./Components/Chapter.jsx";
+import "./index.css";
 // import Books from "./pages/Books.jsx";
 const Books = lazy(() => import("./pages/Books.jsx"));
 

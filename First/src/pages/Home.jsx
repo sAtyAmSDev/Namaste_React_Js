@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { Card } from "../Components/Card";
-import Shimmer from "../layout/shimmer";
+import { Card, CardVerseShowOnCard } from "../Components/Card";
 import { API_URL } from "../Components/Utils/constants";
 import useFetch from "../hooks/useFetch";
 import useOnlineStatus from "../hooks/useOnlineStatus";
 import Offline from "../Components/Offline";
+import Shimmer from "../layout/shimmer";
 const Home = () => {
   const { data, loading, error } = useFetch("chapters");
   const [GitaDataCopy, setGitaDataCopy] = useState([]);
   const [SearchText, setSearchText] = useState("");
-const onlineStatus =useOnlineStatus()
+  const onlineStatus = useOnlineStatus();
+
+  const CardsShowTheSlock = CardVerseShowOnCard(Card);
+
   useEffect(() => {
     if (data.length > 0) {
       setGitaDataCopy(data);
@@ -27,15 +30,16 @@ const onlineStatus =useOnlineStatus()
     setSearchText("");
   };
 
-if (onlineStatus === false) return <Offline />;
-
+  if (onlineStatus === false) return <Offline />;
   return loading ? (
     <Shimmer />
   ) : (
-    <div className="Home">
-      <div className="input">
+    <div className="Home  px-5 md:px-10 flex flex-col bg-gray-300/30  w-full h-full  ">
+      <div className="input mt-5 flex gap-2 p-2 flex-col sm:flex-row ">
         <input
+          className="border-2 border-gray-400/40 outline-none rounded-md p-2 text-sm w-full md:w-1/3 hover:border-orange-500 placeholder:text-gray-600 "
           type="text"
+          placeholder="Enter The Chapter Name"
           name=""
           value={SearchText}
           onChange={(e) => {
@@ -43,11 +47,21 @@ if (onlineStatus === false) return <Offline />;
           }}
           id=""
         />
-        <button onClick={() => filterChapter()}>Search</button>
+        <button
+          className="cursor-pointer p-2 rounded-md  border border-orange-600/30 text-white   bg-orange-500/80 hover:bg-orange-500/90 item-center justify-center flex "
+          onClick={() => filterChapter()}
+        >
+          Search
+        </button>
       </div>
-      <div className="CardContainer">
+      <div className="CardContainer w-full flex flex-wrap gap-5 mt-5 justify-around ">
         {GitaDataCopy.map((item, index) => {
-          return <Card key={item.chapter_number} item={item} />;
+          const { verses_count } = item;
+          return verses_count <= 40 ? (
+            <CardsShowTheSlock key={item.chapter_number} item={item} />
+          ) : (
+            <Card key={item.chapter_number} item={item} />
+          );
         })}
       </div>
     </div>

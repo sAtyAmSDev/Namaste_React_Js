@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
 import { Chapters_API_URL, Verse_API_URL } from "./Utils/constants";
 import Shimmer from "../layout/shimmer";
 import useFetch from "../hooks/useFetch";
+import { useParams } from "react-router";
 
 const Chapter = () => {
   const ChapterName = useParams();
@@ -48,63 +48,103 @@ const Chapter = () => {
     VerseArray.push(i + 1);
   }
 
-  // console.log(VerseInfo.slok);
   console.log(VerseInfo);
 
   return (
-    <div className="Chapter">
-      <div className="ChapterMainContainer">
-        <div className="ChapterContainer" id={chapter_number}>
-          <h1 className="Title">Chapter {chapter_number}</h1>
-          <div>
-            <h2 className="ChapterName">{name}</h2>
+    <div className=" mt-5 mb-10 px-2 md:px-10 w-full overflow-hidden flex flex-col">
+      <div className="flex gap-8 w-full flex-col bg-white/80 shadow-sm shadow-gray-400/40 rounded-md p-2 sm:p-4 md:p-6">
+        <div
+          className="ChapterContainer gap-5 flex flex-col "
+          id={chapter_number}
+        >
+          <div className="flex gap-2  flex-col">
+            <h1 className="Title flex text-2xl font-semibold  ">
+              Chapter {chapter_number}
+            </h1>
+            <h2 className="ChapterName text-xl font-semibold ">{name}</h2>
           </div>
-          <div>
-            <p>Translation</p>
-            <h2 className="ChapterNameTranslation">{translation}</h2>
-            <h2 className="ChapterNameTranslation">{transliteration}</h2>
+          <div className="flex gap-2 flex-col">
+            <p className="text-sm  text-gray-500">Translation :</p>
+            <div className="flex gap-1  flex-col" >
+              <h2 className="ChapterNameTranslation   text-md ">
+                {translation}
+              </h2>
+              <h2 className="ChapterNameTranslation   text-md ">
+                {transliteration}
+              </h2>
+            </div>
           </div>
-          <div>
+          <div className="flex gap-2 flex-col">
             {" "}
-            <p>Meaning :</p>
-            <p className="ChapterMeaning">{meaning.en}</p>
-            <p className="ChapterMeaning">{meaning.hi}</p>
+            <p className="text-sm  text-gray-500">Meaning :</p>
+            <div className="flex gap-1  flex-col">
+              <p className="ChapterMeaning   text-md ">{meaning.en}</p>
+              <p className="ChapterMeaning   text-md ">{meaning.hi}</p>
+            </div>
           </div>{" "}
-          <div>
+          <div className="flex gap-2 flex-col">
             {" "}
-            <p>Summary :</p> <br />
-            <p className="ChapterSummary">{summary.en}</p>
-            <br />
-            <p className="ChapterSummary">{summary.hi}</p>
+            <p className="text-sm  text-gray-500">Summary :</p>
+            <div className="flex gap-4  flex-col">
+              <p className="ChapterSummary   text-md  text-justify ">
+                {summary.en}
+              </p>
+              <p className="ChapterSummary   text-md text-justify ">
+                {summary.hi}
+              </p>
+            </div>
           </div>{" "}
         </div>
-        <div className="ChapterVerseContainer">
-          <h2>Verse Count : {verses_count}</h2>
+        <div
+          className="ChapterVerseContainer  flex
+        flex-col gap-5"
+        >
+          <h2 className="text-2xl font-semibold  ">
+            Verse Count : {verses_count}
+          </h2>
 
-          <div className="VerseCard">
-            {VerseArray.map((item) => {
-              return (
-                <button onClick={() => GetVerseInfo(item)} key={item}>
-                  {item}
-                </button>
-              );
-            })}
+          <div className="VerseCard flex flex-col gap-2">
+            <span className="text-sm  text-gray-500">Slok :</span>
+            <div className="flex gap-3 flex-wrap justify-around ">
+              {VerseArray.map((item) => {
+                return (
+                  <button
+                    className="cursor-pointer w-10 p-2 rounded-md  border border-orange-600/30 text-white   bg-orange-500/80 hover:bg-orange-500/90 item-center justify-center flex text-sm "
+                    onClick={() => GetVerseInfo(item)}
+                    key={item}
+                  >
+                    {item}
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
       {VerseInfo && (
-        <div className="VerseInfoContainer">
-          <h1>
-            <span>Slok :</span>
+        <div className="mt-5 flex gap-8 w-full flex-col bg-white/80 shadow-sm shadow-gray-400/40 rounded-md p-2 sm:p-4 md:p-6">
+          <h2 className="text-2xl font-semibold mb-4  ">
+            Slok No : {VerseInfo.verse}
+          </h2>
+          <h1 className="  text-md">
+            <span className="text-sm text-justify text-gray-500">Slok : </span>
             {VerseInfo.slok || " "}
           </h1>
-          <p>
-            <span>Author :</span>
+          <p className="  text-md">
+            <span className="text-sm  text-gray-500">Author : </span>
             {VerseInfo.sankar.author || " "}
           </p>
-          <p>{VerseInfo.sankar.et || " "}</p>
-          <p>{VerseInfo.sankar.ht || " "}</p>
-          <p>{VerseInfo.sankar.sc || " "}</p>
+          <div className="flex gap-4 flex-col">
+            <p className="  text-md text-justify">
+              {VerseInfo.sankar.et || " "}
+            </p>
+            <p className="  text-md text-justify">
+              {VerseInfo.sankar.ht || " "}
+            </p>
+            <p className="  text-md text-justify">
+              {VerseInfo.sankar.sc || " "}
+            </p>
+          </div>
         </div>
       )}
     </div>
