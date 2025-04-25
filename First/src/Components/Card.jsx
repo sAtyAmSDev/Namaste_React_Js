@@ -12,8 +12,8 @@ export const Card = ({ item }) => {
       <div className="flex gap-2  flex-col">
         <span className="text-sm  text-gray-500">Meaning :</span>
      
-        <p className="Discription text-md">{meaning.en}</p>
-        <p className="Discription text-md">{meaning.hi}</p>
+        <p className=" text-md">{meaning.en}</p>
+        <p className=" text-md">{meaning.hi}</p>
 
       </div>
 
@@ -22,7 +22,7 @@ export const Card = ({ item }) => {
   );
 };
 
-// High Order Componenet
+// High Order Component
 export const CardVerseShowOnCard = (Card)=>{
   return ({ item })=>{
     const { chapter_number, meaning, name, summary,verses_count } = item;
@@ -37,8 +37,8 @@ export const CardVerseShowOnCard = (Card)=>{
       <div className="flex gap-2  flex-col">
         <span className="text-sm  text-gray-500">Meaning :</span>
      
-        <p className="Discription text-md">{meaning.en}</p>
-        <p className="Discription text-md">{meaning.hi}</p>
+        <p className=" text-md">{meaning.en}</p>
+        <p className=" text-md">{meaning.hi}</p>
 
       </div>responsive
 
