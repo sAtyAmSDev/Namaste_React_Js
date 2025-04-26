@@ -3,6 +3,7 @@ import { Chapters_API_URL, Verse_API_URL } from "./Utils/constants";
 import Shimmer from "../layout/Shimmer";
 import useFetch from "../hooks/useFetch";
 import { Link, useParams } from "react-router";
+import ChapterShimmer from "../layout/ChapterShimmer";
 
 const Chapter = () => {
   const ChapterName = useParams();
@@ -20,7 +21,7 @@ const Chapter = () => {
     setChapterInfo(response);
   };
 
-  if (ChapterInfo === null) return <Shimmer />;
+  if (ChapterInfo === null) return <ChapterShimmer />;
 
   const {
     chapter_number,
@@ -38,6 +39,7 @@ const Chapter = () => {
   }
 
   return (
+  
     <div className=" mt-5 mb-10 px-2 md:px-10 w-full overflow-hidden flex flex-col">
       <div className="relative flex gap-8 w-full flex-col bg-white/80 shadow-sm shadow-gray-400/40 rounded-md p-2 sm:p-4 md:p-6">
         <div
@@ -95,7 +97,7 @@ const Chapter = () => {
             <div className="flex gap-3 sm:gap-2 flex-wrap justify-start ">
               {VerseArray.map((item) => {
                 return (
-                  <Link 
+                  <Link
                     to={"/chapter/" + chapter_number + "/slok/" + item}
                     state={{  chapter_number, slok: item }}
                     key={item}
@@ -103,7 +105,7 @@ const Chapter = () => {
                     {" "}
                     <button
                       className="cursor-pointer w-10 sm:w-7 sm:h-7 p-2 sm:p-1 flex justify-center items-center  rounded-md  border border-orange-600/30 text-white   bg-orange-500/80 hover:bg-orange-500/90 item-center  text-sm "
-                     
+
                     >
                       {item}
                     </button>

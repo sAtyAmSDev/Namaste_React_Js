@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Verse_API_URL } from "../Components/Utils/constants";
 import { useLocation } from "react-router";
 import ShowTheSlokWithAuthor from "../Components/Slok/ShowTheAuthorName";
+import SlokShimmer from "../layout/SlokShimmer";
 
 const Slok = () => {
   const SlokData = useLocation();
@@ -36,7 +37,9 @@ const Slok = () => {
   }
 
   console.log(VerseArr);
-
+  if (!VerseInfo || Object.keys(VerseInfo).length === 0) {
+    return <SlokShimmer />;
+  }
   return (
     <div className="mt-5 flex flex-col bg-white/80 lg:w-1/2 mx-auto shadow-sm shadow-gray-400/40 rounded-md p-2 sm:p-4 md:p-6">
       <div className="flex gap-2 flex-col">
@@ -48,7 +51,7 @@ const Slok = () => {
           {VerseInfo.slok || " "}
         </h1>
       </div>
-<h2 className="text-md text-justify text-gray-500 mt-6">Bhashya : </h2>
+      <h2 className="text-md text-justify text-gray-500 mt-6">Bhashya : </h2>
       {VerseArr.map((items, index) => {
         return (
           <ShowTheSlokWithAuthor
