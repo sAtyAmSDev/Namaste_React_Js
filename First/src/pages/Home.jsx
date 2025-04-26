@@ -10,7 +10,7 @@ const Home = () => {
   const [SearchText, setSearchText] = useState("");
   const onlineStatus = useOnlineStatus();
 
-  const CardsShowTheSlock = CardVerseShowOnCard(Card);
+  const CardsShowTheSlok = CardVerseShowOnCard(Card);
 
   useEffect(() => {
     if (data.length > 0) {
@@ -33,7 +33,7 @@ const Home = () => {
   return loading ? (
     <Shimmer />
   ) : (
-    <div className="Home  px-5 md:px-10 flex flex-col bg-gray-300/30  w-full h-full  ">
+    <div className="Home  px-5 md:px-10 flex flex-col bg-[#e5e7eb]  w-full h-full  ">
       <div className="input mt-5 flex gap-2 p-2 flex-col sm:flex-row ">
         <input
           className="border-2 border-gray-400/40 outline-none rounded-md p-2 text-sm w-full md:w-1/3 hover:border-orange-500 placeholder:text-gray-600 "
@@ -57,7 +57,7 @@ const Home = () => {
         {GitaDataCopy.map((item, index) => {
           const { verses_count } = item;
           return verses_count <= 40 ? (
-            <CardsShowTheSlock key={item.chapter_number} item={item} />
+            <CardsShowTheSlok key={item.chapter_number} item={item} />
           ) : (
             <Card key={item.chapter_number} item={item} />
           );

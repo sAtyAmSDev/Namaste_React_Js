@@ -1,15 +1,13 @@
 import { useEffect, useState } from "react";
 import { Chapters_API_URL, Verse_API_URL } from "./Utils/constants";
-import Shimmer from "../layout/shimmer";
+import Shimmer from "../layout/Shimmer";
 import useFetch from "../hooks/useFetch";
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router";
 
 const Chapter = () => {
   const ChapterName = useParams();
   const { data, loading, error } = useFetch(`chapter/${ChapterName.id}`);
   const [ChapterInfo, setChapterInfo] = useState(null);
-  const [VerseInfo, setVerseInfo] = useState(null);
-  console.log(data);
 
   useEffect(() => {
     GetChapterInfo();
@@ -20,15 +18,6 @@ const Chapter = () => {
     const response = await res.json();
     console.log(response);
     setChapterInfo(response);
-  };
-
-  const GetVerseInfo = async (verseValue) => {
-    fetch("chapter/" + ChapterName.id + "/" + verseValue);
-    const res = await fetch(
-      Verse_API_URL + "/" + ChapterName.id + "/" + verseValue
-    );
-    const response = await res.json();
-    setVerseInfo(response);
   };
 
   if (ChapterInfo === null) return <Shimmer />;
@@ -48,13 +37,11 @@ const Chapter = () => {
     VerseArray.push(i + 1);
   }
 
-  console.log(VerseInfo);
-
   return (
     <div className=" mt-5 mb-10 px-2 md:px-10 w-full overflow-hidden flex flex-col">
-      <div className="flex gap-8 w-full flex-col bg-white/80 shadow-sm shadow-gray-400/40 rounded-md p-2 sm:p-4 md:p-6">
+      <div className="relative flex gap-8 w-full flex-col bg-white/80 shadow-sm shadow-gray-400/40 rounded-md p-2 sm:p-4 md:p-6">
         <div
-          className="ChapterContainer gap-5 flex flex-col "
+          className="ChapterContainer gap-5 sm:gap-6 flex flex-col "
           id={chapter_number}
         >
           <div className="flex gap-2  flex-col">
@@ -65,7 +52,7 @@ const Chapter = () => {
           </div>
           <div className="flex gap-2 flex-col">
             <p className="text-sm  text-gray-500">Translation :</p>
-            <div className="flex gap-1  flex-col" >
+            <div className="flex gap-1  flex-col">
               <h2 className="ChapterNameTranslation   text-md ">
                 {translation}
               </h2>
@@ -97,56 +84,37 @@ const Chapter = () => {
         </div>
         <div
           className="ChapterVerseContainer  flex
-        flex-col gap-5"
+        flex-col gap-5 sm:gap-2 sm:absolute sm:w-96 sm:right-0 sm:top-0 sm:p-2 "
         >
-          <h2 className="text-2xl font-semibold  ">
+          <h2 className="text-2xl sm:text-sm font-semibold  ">
             Verse Count : {verses_count}
           </h2>
 
-          <div className="VerseCard flex flex-col gap-2">
-            <span className="text-sm  text-gray-500">Slok :</span>
-            <div className="flex gap-3 flex-wrap justify-around ">
+          <div className="VerseCard flex flex-col gap-2  ">
+            <span className="text-sm sm:text-xs text-gray-500">Slok :</span>
+            <div className="flex gap-3 sm:gap-2 flex-wrap justify-start ">
               {VerseArray.map((item) => {
                 return (
-                  <button
-                    className="cursor-pointer w-10 p-2 rounded-md  border border-orange-600/30 text-white   bg-orange-500/80 hover:bg-orange-500/90 item-center justify-center flex text-sm "
-                    onClick={() => GetVerseInfo(item)}
+                  <Link 
+                    to={"/chapter/" + chapter_number + "/slok/" + item}
+                    state={{  chapter_number, slok: item }}
                     key={item}
                   >
-                    {item}
-                  </button>
+                    {" "}
+                    <button
+                      className="cursor-pointer w-10 sm:w-7 sm:h-7 p-2 sm:p-1 flex justify-center items-center  rounded-md  border border-orange-600/30 text-white   bg-orange-500/80 hover:bg-orange-500/90 item-center  text-sm "
+                     
+                    >
+                      {item}
+                    </button>
+                  </Link>
                 );
               })}
             </div>
           </div>
         </div>
       </div>
-      {VerseInfo && (
-        <div className="mt-5 flex gap-8 w-full flex-col bg-white/80 shadow-sm shadow-gray-400/40 rounded-md p-2 sm:p-4 md:p-6">
-          <h2 className="text-2xl font-semibold mb-4  ">
-            Slok No : {VerseInfo.verse}
-          </h2>
-          <h1 className="  text-md">
-            <span className="text-sm text-justify text-gray-500">Slok : </span>
-            {VerseInfo.slok || " "}
-          </h1>
-          <p className="  text-md">
-            <span className="text-sm  text-gray-500">Author : </span>
-            {VerseInfo.sankar.author || " "}
-          </p>
-          <div className="flex gap-4 flex-col">
-            <p className="  text-md text-justify">
-              {VerseInfo.sankar.et || " "}
-            </p>
-            <p className="  text-md text-justify">
-              {VerseInfo.sankar.ht || " "}
-            </p>
-            <p className="  text-md text-justify">
-              {VerseInfo.sankar.sc || " "}
-            </p>
-          </div>
-        </div>
-      )}
+
     </div>
   );
 };
