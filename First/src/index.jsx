@@ -9,15 +9,26 @@ import Header from "./layout/Header.jsx";
 import Chapter from "./Components/Chapter.jsx";
 import "./index.css";
 import Slok from "./pages/Slok.jsx";
+import UserContext from "./Components/Utils/UserContext.jsx";
 // import Books from "./pages/Books.jsx";
 const Books = lazy(() => import("./pages/Books.jsx"));
 
 const AppLayout = () => {
+  const [userName, setUserName] = useState("");
+  useEffect(() => {
+    const data = {
+      name: "Satyam",
+    };
+    setUserName(data.name);
+  }, []);
+
   return (
-    <>
-      <Header />
-      <Outlet />
-    </>
+    <UserContext.Provider value={{ logInUser: userName, setUserName }}>
+      <>
+        <Header />
+        <Outlet />
+      </>
+    </UserContext.Provider>
   );
 };
 
