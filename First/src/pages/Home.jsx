@@ -10,7 +10,7 @@ const Home = () => {
   const [SearchText, setSearchText] = useState("");
   const onlineStatus = useOnlineStatus();
 
-  const CardsShowTheSlok = CardVerseShowOnCard(Card);
+  const CardsShowTheChapter = CardVerseShowOnCard(Card);
 
   useEffect(() => {
     if (data.length > 0) {
@@ -33,10 +33,10 @@ const Home = () => {
   return loading ? (
     <Shimmer />
   ) : (
-    <div className="Home  px-5 md:px-10 flex flex-col bg-[#e5e7eb]  w-full h-full  ">
+    <div className="Home  px-5 md:px-10 flex   flex-col bg-[#f5f4f5]  w-full  lg:mx-auto lg:w-[1280px] h-full  ">
       <div className="input mt-5 flex gap-2 p-2 flex-col sm:flex-row ">
         <input
-          className="border-2 border-gray-400/40 outline-none rounded-md p-2 text-sm w-full md:w-1/3 hover:border-orange-500 placeholder:text-gray-600 "
+          className="border-2 border-gray-400/40 bg-white outline-none rounded-md p-2 text-sm w-full md:w-1/3 hover:border-orange-500 placeholder:text-gray-600 "
           type="text"
           placeholder="Enter The Chapter Name"
           name=""
@@ -53,11 +53,11 @@ const Home = () => {
           Search
         </button>
       </div>
-      <div className="CardContainer w-full flex flex-wrap gap-5 mt-5 justify-around ">
+      <div className="CardContainer flex flex-wrap gap-5 mt-5 w-full justify-around ">
         {GitaDataCopy.map((item, index) => {
           const { verses_count } = item;
           return verses_count <= 40 ? (
-            <CardsShowTheSlok key={item.chapter_number} item={item} />
+            <CardsShowTheChapter key={item.chapter_number} item={item} />
           ) : (
             <Card key={item.chapter_number} item={item} />
           );
