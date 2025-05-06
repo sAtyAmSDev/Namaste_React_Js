@@ -1,7 +1,9 @@
 import React, { lazy, Suspense, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router";
-import About from "./pages/About.jsx";
+import { Provider } from "react-redux";
+
+import Books from "./pages/Books.jsx";
 import Contact from "./pages/Contact.jsx";
 import ErrorPage from "./pages/ErrorPage.jsx";
 import Home from "./pages/Home.jsx";
@@ -10,8 +12,9 @@ import Chapter from "./Components/Chapter.jsx";
 import "./index.css";
 import Slok from "./pages/Slok.jsx";
 import UserContext from "./Components/Utils/UserContext.jsx";
-// import Books from "./pages/Books.jsx";
-const Books = lazy(() => import("./pages/Books.jsx"));
+import appStore from "./Components/Utils/appStore.js";
+import Cart from "./pages/Cart.jsx";
+const About = lazy(() => import("./pages/About.jsx"));
 
 const AppLayout = () => {
   const [userName, setUserName] = useState("");
@@ -23,12 +26,14 @@ const AppLayout = () => {
   }, []);
 
   return (
-    <UserContext.Provider value={{ logInUser: userName, setUserName }}>
-      <>
-        <Header />
-        <Outlet />
-      </>
-    </UserContext.Provider>
+    <Provider store={appStore}>
+      <UserContext.Provider value={{ logInUser: userName, setUserName }}>
+        <>
+          <Header />
+          <Outlet />
+        </>
+      </UserContext.Provider>{" "}
+    </Provider>
   );
 };
 
@@ -62,6 +67,10 @@ const appRouter = createBrowserRouter([
         element: <Chapter />,
       },
       { path: "/chapter/:chapterId/slok/:slokId", element: <Slok /> },
+      {
+        path: "/cart",
+        element: <Cart />,
+      },
     ],
     errorElement: <ErrorPage />,
   },

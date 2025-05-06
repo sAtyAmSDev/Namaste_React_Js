@@ -25,6 +25,12 @@ class About extends React.Component {
     </UserContext.Consumer>
     }</div>
 
+<div className="px-5 md:px-10 mt-5 flex justify-center flex-col">
+      {" "}
+      This page has many books. Since this page is also larger than 10MB, use
+      lazy and Suspense in React JS to optimize the app.
+    </div>
+
                 {/* <UserClassComp name={"First"} age={"19"} location={"pune"} /> */}
 
             </div>
